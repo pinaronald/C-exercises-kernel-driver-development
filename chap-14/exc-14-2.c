@@ -38,8 +38,8 @@ int main(int argc, char *argv[])
 		exit (8);
 	}
 	
-	 outfile = fopen(argv[2], "w");                                               
-	    if (outfile == NULL) {                                                        
+	outfile = fopen(argv[2], "w");                                               
+	if (outfile == NULL) {                                                        
         fprintf(stderr, "Error, unable to open the output file\n");              
         exit (8);                                                               
     } 
