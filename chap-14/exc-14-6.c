@@ -52,12 +52,12 @@ int main (int argc, char *argv[])
     while ((getline(&line, &len,infile_ptr)) != -1 ) {                                      
 
 		/* Remove the newline cha in the nad of the line string */
-		line[strlen(line) - 1] = '\0';
-		/* Fetch the first line */
-		if ((strncmp(line, "first name", 10)) ==  0)
-			strcpy(subscriber.first_name, &line[12]); /* Getst the name starting from char 11*/
+	line[strlen(line) - 1] = '\0';
+	/* Fetch the first line */
+	if ((strncmp(line, "first name", 10)) ==  0)
+		strcpy(subscriber.first_name, &line[12]); /* Getst the name starting from char 11*/
 
-		if ((strncmp(line, "last name:", 10)) ==  0)                             
+	if ((strncmp(line, "last name:", 10)) ==  0)                             
             strcpy(subscriber.last_name, &line[11]); 
 
         if ((strncmp(line, "address:", 8)) ==  0)                             
