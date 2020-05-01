@@ -46,7 +46,8 @@ int main(int argc, char *argv[])
                                                                                 
     while ((ch = fgetc(infile_ptr)) != EOF ) {                                      
 		/* check if high bit is not set, else it will not be included */
-        if ( (ch & 0x80) == 0 )                                                                           fputc(ch, outfile_ptr);                                                
+        if ( (ch & 0x80) == 0 )  
+		fputc(ch, outfile_ptr);                                                
     }                                                                 
                                                                                 
     fclose(infile_ptr);                                                             
