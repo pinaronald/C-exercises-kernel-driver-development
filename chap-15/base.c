@@ -46,7 +46,7 @@ int main()
 		if (lookup(name))
 			printf("%s is in the list\n", name);
 		else
-            printf("%s is not in the list\n", name);  
+			printf("%s is not in the list\n", name);  
 	}
 
 	return (0);
