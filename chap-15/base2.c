@@ -37,14 +37,11 @@ int main(int argc, char *argv[])
 
 			case 'S': 
 				name_file_save = &argv[1][2];
-
 				/* this will open the fine name and will return a valid pointer */
 				save_file = fopen(name_file_save, "w");
-
 				if (save_file == NULL) 
 					fprintf(stderr, "Warning: unable to open %s\n", name_file_save);
-
-					break;
+				break;
 
 			default: 
 				fprintf(stderr, "Bad option: %s\n", argv[1]);
