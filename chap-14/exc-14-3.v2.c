@@ -65,6 +65,6 @@ int main(int argc, char *argv[])
 	fclose(dev3file_ptr);
     fclose(nondev3file_ptr);                                                           
 		
-	return(0);
+	return (0);
 }
 
