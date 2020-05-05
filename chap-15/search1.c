@@ -57,6 +57,7 @@ int main()
 
         if (search == -1)
             break;
+            
         low = 0;
         high = max_count;
 
@@ -72,9 +73,9 @@ int main()
             }
 
             if (data[middle] < search)
-                low = search;
+                low = middle;
             else
-                high = search;
+                high = middle;
         }
 
     }
