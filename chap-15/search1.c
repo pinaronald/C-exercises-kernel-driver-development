@@ -64,18 +64,19 @@ int main()
         while (1) {
             middle = (low + high) / 2;
 
-            if (data[middle] == search)
+            if (data[middle] == search){
                 printf("Found at index %d.\n", middle);
-
+                break;
+            }
             if (low == high){
                 printf("Not found\n");
                 break;
             }
 
             if (data[middle] < search)
-                low = middle;
+                low = middle + 1 ;
             else
-                high = middle;
+                high = middle - 1;
         }
 
     }
