@@ -1,0 +1,398 @@
+GAS LISTING as_listing.s 			page 1
+
+
+   1              		.file	"as_listing.c"
+   2              		.text
+   3              	.Ltext0:
+   4              		.section	.rodata
+   5              	.LC0:
+   6 0000 25732025 		.string	"%s %d\n"
+   6      640A00
+   7              		.text
+   8              		.globl	main
+   9              		.type	main, @function
+  10              	main:
+  11              	.LFB0:
+  12              		.file 1 "as_listing.c"
+   1:as_listing.c  **** #include <stdio.h>
+   2:as_listing.c  **** 
+   3:as_listing.c  **** int main(void)
+   4:as_listing.c  **** {
+  13              		.loc 1 4 0
+  14              		.cfi_startproc
+  15 0000 55       		pushq	%rbp
+  16              		.cfi_def_cfa_offset 16
+  17              		.cfi_offset 6, -16
+  18 0001 4889E5   		movq	%rsp, %rbp
+  19              		.cfi_def_cfa_register 6
+  20 0004 4883EC20 		subq	$32, %rsp
+   5:as_listing.c  **** 	int a = 5;
+  21              		.loc 1 5 0
+  22 0008 C745FC05 		movl	$5, -4(%rbp)
+  22      000000
+   6:as_listing.c  **** 	int b = 3;
+  23              		.loc 1 6 0
+  24 000f C745F803 		movl	$3, -8(%rbp)
+  24      000000
+   7:as_listing.c  **** 	int c = 0;
+  25              		.loc 1 7 0
+  26 0016 C745F400 		movl	$0, -12(%rbp)
+  26      000000
+   8:as_listing.c  **** 
+   9:as_listing.c  **** 	char s[] = "The result is";
+  27              		.loc 1 9 0
+  28 001d 48B85468 		movabsq	$8463219665603487828, %rax
+  28      65207265 
+  28      7375
+  29 0027 488945E0 		movq	%rax, -32(%rbp)
+  30 002b C745E86C 		movl	$1763734636, -24(%rbp)
+  30      742069
+  31 0032 66C745EC 		movw	$115, -20(%rbp)
+  31      7300
+  10:as_listing.c  **** 
+  11:as_listing.c  **** 	c = a + b;
+  32              		.loc 1 11 0
+  33 0038 8B45F8   		movl	-8(%rbp), %eax
+  34 003b 8B55FC   		movl	-4(%rbp), %edx
+  35 003e 01D0     		addl	%edx, %eax
+  36 0040 8945F4   		movl	%eax, -12(%rbp)
+  12:as_listing.c  **** 
+  13:as_listing.c  **** 	printf("%s %d\n", s, c);
+GAS LISTING as_listing.s 			page 2
+
+
+  37              		.loc 1 13 0
+  38 0043 8B55F4   		movl	-12(%rbp), %edx
+  39 0046 488D45E0 		leaq	-32(%rbp), %rax
+  40 004a 4889C6   		movq	%rax, %rsi
+  41 004d BF000000 		movl	$.LC0, %edi
+  41      00
+  42 0052 B8000000 		movl	$0, %eax
+  42      00
+  43 0057 E8000000 		call	printf
+  43      00
+  14:as_listing.c  **** 
+  15:as_listing.c  **** 	return 0;
+  44              		.loc 1 15 0
+  45 005c B8000000 		movl	$0, %eax
+  45      00
+  16:as_listing.c  ****  }
+  46              		.loc 1 16 0
+  47 0061 C9       		leave
+  48              		.cfi_def_cfa 7, 8
+  49 0062 C3       		ret
+  50              		.cfi_endproc
+  51              	.LFE0:
+  52              		.size	main, .-main
+  53              	.Letext0:
+  54              		.section	.debug_info,"",@progbits
+  55              	.Ldebug_info0:
+  56 0000 CE000000 		.long	0xce
+  57 0004 0400     		.value	0x4
+  58 0006 00000000 		.long	.Ldebug_abbrev0
+  59 000a 08       		.byte	0x8
+  60 000b 01       		.uleb128 0x1
+  61 000c 00000000 		.long	.LASF9
+  62 0010 01       		.byte	0x1
+  63 0011 00000000 		.long	.LASF10
+  64 0015 00000000 		.long	.LASF11
+  65 0019 00000000 		.quad	.Ltext0
+  65      00000000 
+  66 0021 63000000 		.quad	.Letext0-.Ltext0
+  66      00000000 
+  67 0029 00000000 		.long	.Ldebug_line0
+  68 002d 02       		.uleb128 0x2
+  69 002e 08       		.byte	0x8
+  70 002f 07       		.byte	0x7
+  71 0030 00000000 		.long	.LASF0
+  72 0034 02       		.uleb128 0x2
+  73 0035 01       		.byte	0x1
+  74 0036 08       		.byte	0x8
+  75 0037 00000000 		.long	.LASF1
+  76 003b 02       		.uleb128 0x2
+  77 003c 02       		.byte	0x2
+  78 003d 07       		.byte	0x7
+  79 003e 00000000 		.long	.LASF2
+  80 0042 02       		.uleb128 0x2
+  81 0043 04       		.byte	0x4
+  82 0044 07       		.byte	0x7
+  83 0045 00000000 		.long	.LASF3
+  84 0049 02       		.uleb128 0x2
+GAS LISTING as_listing.s 			page 3
+
+
+  85 004a 01       		.byte	0x1
+  86 004b 06       		.byte	0x6
+  87 004c 00000000 		.long	.LASF4
+  88 0050 02       		.uleb128 0x2
+  89 0051 02       		.byte	0x2
+  90 0052 05       		.byte	0x5
+  91 0053 00000000 		.long	.LASF5
+  92 0057 03       		.uleb128 0x3
+  93 0058 04       		.byte	0x4
+  94 0059 05       		.byte	0x5
+  95 005a 696E7400 		.string	"int"
+  96 005e 02       		.uleb128 0x2
+  97 005f 08       		.byte	0x8
+  98 0060 05       		.byte	0x5
+  99 0061 00000000 		.long	.LASF6
+ 100 0065 02       		.uleb128 0x2
+ 101 0066 08       		.byte	0x8
+ 102 0067 07       		.byte	0x7
+ 103 0068 00000000 		.long	.LASF7
+ 104 006c 02       		.uleb128 0x2
+ 105 006d 01       		.byte	0x1
+ 106 006e 06       		.byte	0x6
+ 107 006f 00000000 		.long	.LASF8
+ 108 0073 04       		.uleb128 0x4
+ 109 0074 00000000 		.long	.LASF12
+ 110 0078 01       		.byte	0x1
+ 111 0079 03       		.byte	0x3
+ 112 007a 57000000 		.long	0x57
+ 113 007e 00000000 		.quad	.LFB0
+ 113      00000000 
+ 114 0086 63000000 		.quad	.LFE0-.LFB0
+ 114      00000000 
+ 115 008e 01       		.uleb128 0x1
+ 116 008f 9C       		.byte	0x9c
+ 117 0090 C5000000 		.long	0xc5
+ 118 0094 05       		.uleb128 0x5
+ 119 0095 6100     		.string	"a"
+ 120 0097 01       		.byte	0x1
+ 121 0098 05       		.byte	0x5
+ 122 0099 57000000 		.long	0x57
+ 123 009d 02       		.uleb128 0x2
+ 124 009e 91       		.byte	0x91
+ 125 009f 6C       		.sleb128 -20
+ 126 00a0 05       		.uleb128 0x5
+ 127 00a1 6200     		.string	"b"
+ 128 00a3 01       		.byte	0x1
+ 129 00a4 06       		.byte	0x6
+ 130 00a5 57000000 		.long	0x57
+ 131 00a9 02       		.uleb128 0x2
+ 132 00aa 91       		.byte	0x91
+ 133 00ab 68       		.sleb128 -24
+ 134 00ac 05       		.uleb128 0x5
+ 135 00ad 6300     		.string	"c"
+ 136 00af 01       		.byte	0x1
+ 137 00b0 07       		.byte	0x7
+ 138 00b1 57000000 		.long	0x57
+ 139 00b5 02       		.uleb128 0x2
+GAS LISTING as_listing.s 			page 4
+
+
+ 140 00b6 91       		.byte	0x91
+ 141 00b7 64       		.sleb128 -28
+ 142 00b8 05       		.uleb128 0x5
+ 143 00b9 7300     		.string	"s"
+ 144 00bb 01       		.byte	0x1
+ 145 00bc 09       		.byte	0x9
+ 146 00bd C5000000 		.long	0xc5
+ 147 00c1 02       		.uleb128 0x2
+ 148 00c2 91       		.byte	0x91
+ 149 00c3 50       		.sleb128 -48
+ 150 00c4 00       		.byte	0
+ 151 00c5 06       		.uleb128 0x6
+ 152 00c6 6C000000 		.long	0x6c
+ 153 00ca 07       		.uleb128 0x7
+ 154 00cb 65000000 		.long	0x65
+ 155 00cf 0D       		.byte	0xd
+ 156 00d0 00       		.byte	0
+ 157 00d1 00       		.byte	0
+ 158              		.section	.debug_abbrev,"",@progbits
+ 159              	.Ldebug_abbrev0:
+ 160 0000 01       		.uleb128 0x1
+ 161 0001 11       		.uleb128 0x11
+ 162 0002 01       		.byte	0x1
+ 163 0003 25       		.uleb128 0x25
+ 164 0004 0E       		.uleb128 0xe
+ 165 0005 13       		.uleb128 0x13
+ 166 0006 0B       		.uleb128 0xb
+ 167 0007 03       		.uleb128 0x3
+ 168 0008 0E       		.uleb128 0xe
+ 169 0009 1B       		.uleb128 0x1b
+ 170 000a 0E       		.uleb128 0xe
+ 171 000b 11       		.uleb128 0x11
+ 172 000c 01       		.uleb128 0x1
+ 173 000d 12       		.uleb128 0x12
+ 174 000e 07       		.uleb128 0x7
+ 175 000f 10       		.uleb128 0x10
+ 176 0010 17       		.uleb128 0x17
+ 177 0011 00       		.byte	0
+ 178 0012 00       		.byte	0
+ 179 0013 02       		.uleb128 0x2
+ 180 0014 24       		.uleb128 0x24
+ 181 0015 00       		.byte	0
+ 182 0016 0B       		.uleb128 0xb
+ 183 0017 0B       		.uleb128 0xb
+ 184 0018 3E       		.uleb128 0x3e
+ 185 0019 0B       		.uleb128 0xb
+ 186 001a 03       		.uleb128 0x3
+ 187 001b 0E       		.uleb128 0xe
+ 188 001c 00       		.byte	0
+ 189 001d 00       		.byte	0
+ 190 001e 03       		.uleb128 0x3
+ 191 001f 24       		.uleb128 0x24
+ 192 0020 00       		.byte	0
+ 193 0021 0B       		.uleb128 0xb
+ 194 0022 0B       		.uleb128 0xb
+ 195 0023 3E       		.uleb128 0x3e
+ 196 0024 0B       		.uleb128 0xb
+GAS LISTING as_listing.s 			page 5
+
+
+ 197 0025 03       		.uleb128 0x3
+ 198 0026 08       		.uleb128 0x8
+ 199 0027 00       		.byte	0
+ 200 0028 00       		.byte	0
+ 201 0029 04       		.uleb128 0x4
+ 202 002a 2E       		.uleb128 0x2e
+ 203 002b 01       		.byte	0x1
+ 204 002c 3F       		.uleb128 0x3f
+ 205 002d 19       		.uleb128 0x19
+ 206 002e 03       		.uleb128 0x3
+ 207 002f 0E       		.uleb128 0xe
+ 208 0030 3A       		.uleb128 0x3a
+ 209 0031 0B       		.uleb128 0xb
+ 210 0032 3B       		.uleb128 0x3b
+ 211 0033 0B       		.uleb128 0xb
+ 212 0034 27       		.uleb128 0x27
+ 213 0035 19       		.uleb128 0x19
+ 214 0036 49       		.uleb128 0x49
+ 215 0037 13       		.uleb128 0x13
+ 216 0038 11       		.uleb128 0x11
+ 217 0039 01       		.uleb128 0x1
+ 218 003a 12       		.uleb128 0x12
+ 219 003b 07       		.uleb128 0x7
+ 220 003c 40       		.uleb128 0x40
+ 221 003d 18       		.uleb128 0x18
+ 222 003e 9642     		.uleb128 0x2116
+ 223 0040 19       		.uleb128 0x19
+ 224 0041 01       		.uleb128 0x1
+ 225 0042 13       		.uleb128 0x13
+ 226 0043 00       		.byte	0
+ 227 0044 00       		.byte	0
+ 228 0045 05       		.uleb128 0x5
+ 229 0046 34       		.uleb128 0x34
+ 230 0047 00       		.byte	0
+ 231 0048 03       		.uleb128 0x3
+ 232 0049 08       		.uleb128 0x8
+ 233 004a 3A       		.uleb128 0x3a
+ 234 004b 0B       		.uleb128 0xb
+ 235 004c 3B       		.uleb128 0x3b
+ 236 004d 0B       		.uleb128 0xb
+ 237 004e 49       		.uleb128 0x49
+ 238 004f 13       		.uleb128 0x13
+ 239 0050 02       		.uleb128 0x2
+ 240 0051 18       		.uleb128 0x18
+ 241 0052 00       		.byte	0
+ 242 0053 00       		.byte	0
+ 243 0054 06       		.uleb128 0x6
+ 244 0055 01       		.uleb128 0x1
+ 245 0056 01       		.byte	0x1
+ 246 0057 49       		.uleb128 0x49
+ 247 0058 13       		.uleb128 0x13
+ 248 0059 00       		.byte	0
+ 249 005a 00       		.byte	0
+ 250 005b 07       		.uleb128 0x7
+ 251 005c 21       		.uleb128 0x21
+ 252 005d 00       		.byte	0
+ 253 005e 49       		.uleb128 0x49
+GAS LISTING as_listing.s 			page 6
+
+
+ 254 005f 13       		.uleb128 0x13
+ 255 0060 2F       		.uleb128 0x2f
+ 256 0061 0B       		.uleb128 0xb
+ 257 0062 00       		.byte	0
+ 258 0063 00       		.byte	0
+ 259 0064 00       		.byte	0
+ 260              		.section	.debug_aranges,"",@progbits
+ 261 0000 2C000000 		.long	0x2c
+ 262 0004 0200     		.value	0x2
+ 263 0006 00000000 		.long	.Ldebug_info0
+ 264 000a 08       		.byte	0x8
+ 265 000b 00       		.byte	0
+ 266 000c 0000     		.value	0
+ 267 000e 0000     		.value	0
+ 268 0010 00000000 		.quad	.Ltext0
+ 268      00000000 
+ 269 0018 63000000 		.quad	.Letext0-.Ltext0
+ 269      00000000 
+ 270 0020 00000000 		.quad	0
+ 270      00000000 
+ 271 0028 00000000 		.quad	0
+ 271      00000000 
+ 272              		.section	.debug_line,"",@progbits
+ 273              	.Ldebug_line0:
+ 274 0000 44000000 		.section	.debug_str,"MS",@progbits,1
+ 274      02002300 
+ 274      00000101 
+ 274      FB0E0D00 
+ 274      01010101 
+ 275              	.LASF2:
+ 276 0000 73686F72 		.string	"short unsigned int"
+ 276      7420756E 
+ 276      7369676E 
+ 276      65642069 
+ 276      6E7400
+ 277              	.LASF3:
+ 278 0013 756E7369 		.string	"unsigned int"
+ 278      676E6564 
+ 278      20696E74 
+ 278      00
+ 279              	.LASF9:
+ 280 0020 474E5520 		.string	"GNU C 4.8.5 -mtune=generic -march=x86-64 -g"
+ 280      4320342E 
+ 280      382E3520 
+ 280      2D6D7475 
+ 280      6E653D67 
+ 281              	.LASF0:
+ 282 004c 6C6F6E67 		.string	"long unsigned int"
+ 282      20756E73 
+ 282      69676E65 
+ 282      6420696E 
+ 282      7400
+ 283              	.LASF8:
+ 284 005e 63686172 		.string	"char"
+ 284      00
+ 285              	.LASF11:
+ 286 0063 2F686F6D 		.string	"/home/ronald/c-prog/gitrepo"
+GAS LISTING as_listing.s 			page 7
+
+
+ 286      652F726F 
+ 286      6E616C64 
+ 286      2F632D70 
+ 286      726F672F 
+ 287              	.LASF1:
+ 288 007f 756E7369 		.string	"unsigned char"
+ 288      676E6564 
+ 288      20636861 
+ 288      7200
+ 289              	.LASF12:
+ 290 008d 6D61696E 		.string	"main"
+ 290      00
+ 291              	.LASF10:
+ 292 0092 61735F6C 		.string	"as_listing.c"
+ 292      69737469 
+ 292      6E672E63 
+ 292      00
+ 293              	.LASF6:
+ 294 009f 6C6F6E67 		.string	"long int"
+ 294      20696E74 
+ 294      00
+ 295              	.LASF4:
+ 296 00a8 7369676E 		.string	"signed char"
+ 296      65642063 
+ 296      68617200 
+ 297              	.LASF5:
+ 298 00b4 73686F72 		.string	"short int"
+ 298      7420696E 
+ 298      7400
+ 299              	.LASF7:
+ 300 00be 73697A65 		.string	"sizetype"
+ 300      74797065 
+ 300      00
+ 301              		.ident	"GCC: (SUSE Linux) 4.8.5"
+ 302              		.section	.note.GNU-stack,"",@progbits

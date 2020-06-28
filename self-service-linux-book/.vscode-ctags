@@ -1,0 +1,68 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+_GNU_SOURCE	walk_stack.c	19;"	d	file:
+a	watch1.c	/^int a = 5;$/;"	v
+add_employee	employee.c	/^void add_employee(struct employee *rec, char *name, int num)$/;"	f
+bacon	pizza.c	28;"	d	file:
+bar	walk_stack.c	/^int bar(void)$/;"	f
+baz	walk_stack.c	/^int baz(void)$/;"	f
+boo	walk_stack.c	/^int boo(void)$/;"	f
+cheese	pizza.c	21;"	d	file:
+department_no	employee.h	/^	int department_no;$/;"	m	struct:employee_rec
+employee	employee.c	/^struct employee$/;"	s	file:
+employee_no	employee.h	/^	int employee_no;$/;"	m	struct:employee_rec
+employee_rec	employee.h	/^struct employee_rec$/;"	s
+first_name	employee.h	/^	char first_name[20];$/;"	m	struct:employee_rec
+floating_rec	structure.c	/^struct employee_rec *floating_rec;$/;"	v	typeref:struct:employee_rec
+foo	employee1.c	/^int foo(struct employee_rec *pEmp)$/;"	f
+foo	walk_stack.c	/^int foo(void)$/;"	f
+func1	dyn.c	/^void func1(void)$/;"	f
+func2	dyn.c	/^void func2(void)$/;"	f
+function1	stack3.c	/^void function1(int parmInt)$/;"	f
+function1	stack4.c	/^void function1(int param)$/;"	f
+function2	stack3.c	/^void function2(char *paramString)$/;"	f
+function3	stack3.c	/^void function3 (int *passedByReference)$/;"	f
+getRBP	walk_stack.c	/^void **getRBP(long dummy)$/;"	f
+global_var	test-maps.c	/^int global_var = 4;$/;"	v
+ham	pizza.c	29;"	d	file:
+is_ceo	employee.h	/^	int is_ceo;$/;"	m	struct:employee_rec
+large	pizza.c	19;"	d	file:
+last_name	employee.h	/^	char last_name[20];$/;"	m	struct:employee_rec
+main	alarm.c	/^int main()$/;"	f
+main	as_listing.c	/^int main(void)$/;"	f
+main	daemon_xterm.c	/^int main(void)$/;"	f
+main	dyn_main.c	/^int main(void)$/;"	f
+main	employee.c	/^int main(void)$/;"	f
+main	employee1.c	/^int main(void)$/;"	f
+main	hang.c	/^int main( int argc, char *argv[])$/;"	f
+main	mypause.c	/^int main(void)$/;"	f
+main	pizza.c	/^int main(void)$/;"	f
+main	simple_trap.c	/^int main(void)$/;"	f
+main	stack1.c	/^int main(void)$/;"	f
+main	stack3.c	/^int main(void)$/;"	f
+main	stack4.c	/^int main(void)$/;"	f
+main	stack_corruption.c	/^int main(int argc, char *argv[])$/;"	f
+main	stack_var.c	/^int main(int argc, char *argv[])$/;"	f
+main	test-maps.c	/^int main()$/;"	f
+main	walk_stack.c	/^int main(void)$/;"	f
+main	watch1.c	/^int main()$/;"	f
+make_dinner	pizza.c	/^int make_dinner(int meal_type)$/;"	f
+make_pizza	pizza.c	/^int make_pizza(int size, int crust_type, int topping1, int topping2, $/;"	f
+manager_emp_no	employee.h	/^	int manager_emp_no;$/;"	m	struct:employee_rec
+mushrooms	pizza.c	25;"	d	file:
+name	employee.c	/^	char name[8];$/;"	m	struct:employee	file:
+onions	pizza.c	23;"	d	file:
+pepperoni	pizza.c	22;"	d	file:
+peppers	pizza.c	24;"	d	file:
+pineapple	pizza.c	27;"	d	file:
+pizza	pizza.c	18;"	d	file:
+print_employee_rec	employee.c	/^void print_employee_rec(struct employee rec)$/;"	f
+print_walk_backtrace	walk_stack.c	/^void print_walk_backtrace(void)$/;"	f
+sausage	pizza.c	26;"	d	file:
+serial_num	employee.c	/^	int serial_num;$/;"	m	struct:employee	file:
+thin_crust	pizza.c	20;"	d	file:
+update_employee_name	employee.c	/^void update_employee_name(struct employee *rec, char *name)$/;"	f

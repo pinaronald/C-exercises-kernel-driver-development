@@ -1,0 +1,1 @@
+cmd_/home/ronald/c-prog/gitrepo/LDD_chap_3/test_module.ko := ld -r -m elf_x86_64  -z max-page-size=0x200000 -T /usr/src/linux-4.4.176-96/scripts/module-common.lds --build-id  -o /home/ronald/c-prog/gitrepo/LDD_chap_3/test_module.ko /home/ronald/c-prog/gitrepo/LDD_chap_3/test_module.o /home/ronald/c-prog/gitrepo/LDD_chap_3/test_module.mod.o
