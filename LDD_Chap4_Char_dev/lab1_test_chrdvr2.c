@@ -26,8 +26,8 @@
 int main(int argc, char **argv)
 {
 	int length, fd1, fd2, rc;
-	char *nodename = "/dev/mycdrv";
-	char message[] = "Testing CHAR driver";
+	char *nodename = "/dev/chardrv";
+	char message[] = "Testing CHAR drive";
 
 	length = sizeof(message);
 
@@ -35,15 +35,15 @@ int main(int argc, char **argv)
 		nodename = argv[1];
 
 	fd1 = open(nodename, O_RDWR);
-	printf("opened file descriptor first ime = %d\n", fd1);
+	printf("opened file descriptor first time = %d\n", fd1);
 
 	fd2 = open(nodename, O_RDWR);
-	printf("opened file descriptor seconf ime = %d\n", fd2);
+	printf("opened file descriptor second time = %d\n", fd2);
 
 	rc = write(fd1, message, length);
 	printf("Return code from write=%d on fd#%d\n", rc, fd1);
 
-	memset(message, 0, length); //fill memory with constant bytes
+	memset(message, 0, length);  //fill memory with constant bytes
 
     rc = read(fd2, message, length);
     printf("Return code from read=%d on fd#%d\n", rc, fd2);

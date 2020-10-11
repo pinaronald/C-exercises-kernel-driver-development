@@ -1,1 +1,0 @@
-cmd_/home/ronald/c-prog/gitrepo/LDD_Chap4_Char_dev/lab1_chrdrv2.ko := ld -r -m elf_x86_64  -z max-page-size=0x200000 -T /usr/src/linux-4.4.176-96/scripts/module-common.lds --build-id  -o /home/ronald/c-prog/gitrepo/LDD_Chap4_Char_dev/lab1_chrdrv2.ko /home/ronald/c-prog/gitrepo/LDD_Chap4_Char_dev/lab1_chrdrv2.o /home/ronald/c-prog/gitrepo/LDD_Chap4_Char_dev/lab1_chrdrv2.mod.o

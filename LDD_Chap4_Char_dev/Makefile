@@ -1,2 +1,2 @@
-obj-m += lab1_chrdrv2.o
+obj-m += lab1_chardrv.o
 	
