@@ -8,7 +8,7 @@ int main(int argc, char **argv)
 {
 	int length, fd1, fd2, rc;
 	char *nodename = "/dev/chardrv";
-	char message[] = "Testing CHAR drive";
+	char message[] = " RONALD PINA: Testing CHAR drive esting closing device fjsldfkjsdlfjsldfjldskjflkdsjflkdsjflkj ldkfjlskjfldkjf kldjf lskdjfkldsjfklsjd kldjf lkdjflkdjfkldsj lkd fkdjldksjfkldj kldjf kldjfkldjsfkldj kldfjkldsj fdkfjkldsfjlkdjfkldsjfkldsjfkljdklfjdsklfjkldjf kdjf kldjfkldjfkljfkljdklfjldsk jkf kdljfkldsjfkldsfjkldsjfkljdsfkljdsfjsdkljfkldsfjkldjfkldsjfklsdjfkljdfkldsjflksjdflkjdlskfjskldjfkldsjfkldj kfdjskldjfkldsjflkdsjflk 00000000000000000000000000000000";
 
 	length = sizeof(message);
 
@@ -16,20 +16,20 @@ int main(int argc, char **argv)
 		nodename = argv[1];
 
 	fd1 = open(nodename, O_RDWR);
-	printf("opened file descriptor first time = %d\n", fd1);
+	printf(" Opened file descriptor first time: FD#%d\n", fd1);
 
 	fd2 = open(nodename, O_RDWR);
-	printf("opened file descriptor second time = %d\n", fd2);
+	printf("opened file descriptor second time: FD#%d\n", fd2);
 
 	rc = write(fd1, message, length);
-	printf("Return code from write=%d on fd#%d\n", rc, fd1);
+	printf("Return code from write numebr %d on fd#%d\n", rc, fd1);
 
 	memset(message, 0, length);  //fill memory with constant bytes
 
-    rc = read(fd2, message, length);
-    printf("Return code from read=%d on fd#%d\n", rc, fd2);
+        rc = read(fd2, message, length);
+        printf("Return code from read number %d on fd#%d, message=%s\n", rc, fd2, message);
 
 	close(fd1);
-	return 0;
+	exit(0);
 }
 

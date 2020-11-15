@@ -1,0 +1,174 @@
+/*
+ * =====================================================================================
+ *
+ *       Filename:  lab3_chardrv_simple.c
+ *
+ *    Description:  Adapt the previous dynamic regisration driver to use
+ *    udev to create the device on the fly. 
+ *
+ *    A second solution is given which incldes a header file
+ *    (lab_header.h) which will be used to simplify the coding in
+ *    subsequent character drivers we will create. 
+ *
+ *
+ *        Created:  11/13/2020 11:11:02 PM
+ *       Revision:  none
+ *       Compiler:  gcc
+ *
+ *         Author:  Ronald Pina (), rpina@suse.com
+ *        Company:  SUSE Software Solutions GmbH
+ *
+ * =====================================================================================
+ */
+
+#include <linux/module.h>
+#include <linux/fs.h> 		/* for filesystem operations */
+#include <linux/uaccess.h> 	/* copy_(to,from)_user */
+#include <linux/init.h>		/* module_init, module_exit */
+#include <linux/slab.h>		/* for kmalloc  */
+#include <linux/cdev.h>         /* cdev utilities */
+#include <linux/device.h>
+
+#define  MYDEV_NAME "chardrv"
+
+static dev_t first;
+static unsigned int count = 1;
+static struct cdev *drv_cdev;
+static size_t ramdisk_size = (16*PAGE_SIZE);
+static struct class *foo_class;
+
+static int char_drv_open(struct inode *inode, struct file *file)
+{
+	static int counter = 0;
+	char *ramdisk = kmalloc(ramdisk_size, GFP_KERNEL);
+	file->private_data = ramdisk;
+	pr_info("OPENING device: %s\n\n", MYDEV_NAME);
+	pr_info("DEVICE %s   Major:Minor %d:%d  \n", MYDEV_NAME, MAJOR(first),  MINOR(first));
+	counter ++;
+	pr_info("DEVICE %s has been opened %d times since loaded.\n", MYDEV_NAME, counter);
+	return 0;
+}
+
+static int char_drv_release(struct inode *inode, struct file *file)
+{
+	char *ramdisk = file->private_data;
+	pr_info("CLOSING DEVICE %s\n", MYDEV_NAME);
+	kfree(ramdisk);
+    	return 0;
+	        /* turn this on to inhibit seeking */
+        /* file->f_mode = file->f_mode & ~FMODE_LSEEK; */
+
+}
+
+
+static ssize_t 
+char_drv_read(struct file *file, char __user * buf, size_t lbuf, loff_t * ppos)
+{
+	char *ramdisk=file->private_data;
+	int nbytes, maxbytes, bytes_to_do;
+	maxbytes = ramdisk_size - *ppos;
+	bytes_to_do = maxbytes > lbuf ? lbuf : maxbytes;
+	if (bytes_to_do == 0)
+                pr_info("Reached end of the device on a read");
+        nbytes = bytes_to_do - copy_to_user(buf, ramdisk + *ppos, bytes_to_do);
+	*ppos += nbytes;
+	pr_info("\n Leaving the READ function, nbytes=%d, pos=%d\n", nbytes, (int)*ppos);
+    	return nbytes;
+}
+
+static ssize_t
+char_drv_write( struct file *file, const char __user * buf, size_t lbuf,
+			loff_t * ppos)
+{
+	char *ramdisk=file->private_data;
+	int nbytes, maxbytes, bytes_to_do;
+	maxbytes = ramdisk_size - *ppos;
+        bytes_to_do = maxbytes > lbuf ? lbuf : maxbytes;
+        if (bytes_to_do == 0)
+                pr_info("Reached end of the device on a write");
+        nbytes = bytes_to_do - copy_from_user(ramdisk + *ppos, buf, bytes_to_do);
+	*ppos += nbytes;
+	pr_info("\n Leaving the WRITE function, nbytes=%d, pos=%d\n", nbytes, (int)*ppos);
+	return nbytes;
+}
+
+static loff_t char_drv_lseek(struct file *file, loff_t offset, int flag)
+{
+	loff_t testpos;
+	switch(flag) {
+	case SEEK_SET:
+		testpos = offset;
+		break;
+	case SEEK_CUR:
+		testpos = file->f_pos + offset;
+                break;
+	case SEEK_END:
+		testpos = ramdisk_size + offset;
+		break;
+	default:
+		return -EINVAL;
+	}
+	testpos = testpos < ramdisk_size ? testpos : ramdisk_size;
+	testpos = testpos >= 0 ? testpos : 0;
+	file->f_pos = testpos;
+	pr_info("Seeking to pos=%ld\n", (long)testpos);
+	return testpos; 
+
+}
+
+
+static const struct file_operations char_drv_fops = {
+	.owner = THIS_MODULE,
+	.read = char_drv_read,
+	.write = char_drv_write,
+	.open = char_drv_open,
+	.release = char_drv_release,
+	.llseek = char_drv_lseek
+};
+
+static int __init char_drv_init(void)
+{
+	if (alloc_chrdev_region(&first, 0, count, MYDEV_NAME) < 0) {
+		pr_err("failed to allocate character device region\n");
+		return -1;
+	}
+	if (!(drv_cdev = cdev_alloc())) { 
+		pr_err("cdev_alloc() failed\n");
+		unregister_chrdev_region(first, count);
+		return -1;
+	}
+	cdev_init(drv_cdev, &char_drv_fops);
+	if (cdev_add(drv_cdev, first, count) < 0) {
+		pr_err("cdev_add() failed");
+		cdev_del(drv_cdev);
+		unregister_chrdev_region(first, count);
+		return -1;
+	}	
+
+	foo_class = class_create(THIS_MODULE, "my_class");
+	device_create(foo_class, NULL, first, NULL, "%s", "chardrv");
+
+	pr_info("Sucessfully registering the char device %s\n", MYDEV_NAME);
+	pr_info("Major number = %d, Minor number = %d\n", MAJOR(first),
+                MINOR(first));
+
+	return 0;	
+}
+
+static void __exit char_drv_exit(void)
+{	
+	device_destroy(foo_class, first);
+	class_destroy(foo_class);
+	if(drv_cdev)
+		cdev_del(drv_cdev);
+	unregister_chrdev_region(first, count);
+	pr_info("\nDEVICE unregistered\n");
+	
+}
+
+module_init(char_drv_init);
+module_exit(char_drv_exit);
+
+MODULE_AUTHOR("Ronald Pina");
+MODULE_DESCRIPTION("LDD lab2_chardrv_simple.c");
+MODULE_LICENSE("GPL v2");
