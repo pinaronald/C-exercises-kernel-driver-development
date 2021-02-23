@@ -1,4 +1,4 @@
-obj-m += lab1.o
+obj-m += lab2.o
 
 export KROOT=/lib/modules/5.3.18-lp152.63-default/build
 
