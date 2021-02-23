@@ -1,4 +1,4 @@
-/* Crate a proc entry using proc_create*/
+/* Create a proc entry using proc_create*/
 
 #include <linux/module.h>
 #include <linux/proc_fs.h>
