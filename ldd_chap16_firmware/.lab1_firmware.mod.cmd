@@ -1,0 +1,1 @@
+cmd_/home/ronald/c-prog/gitrepo/c-exercises/ldd_chap16_firmware/lab1_firmware.mod := { echo  /home/ronald/c-prog/gitrepo/c-exercises/ldd_chap16_firmware/lab1_firmware.o; echo; } > /home/ronald/c-prog/gitrepo/c-exercises/ldd_chap16_firmware/lab1_firmware.mod
